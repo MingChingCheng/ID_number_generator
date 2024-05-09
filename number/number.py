@@ -75,9 +75,32 @@ def import_number(layout, file_name: str) -> list:
     
     numbers = []
     for i in range(10):
-        
+
         cell_name = 'NUMBER_' + str(i)
         numbers.append( layout.cell(cell_name) )
 
     return numbers
 # ========================================================================
+
+
+
+# ========================================================================
+def is_test_key(test_keys: list[tuple[int, int]], 
+                i: int, 
+                j: int) -> bool:
+    """
+    Judge if the die is a test key
+
+    Variable:
+        test_keys: a list of tuples
+        i: index of die in x direction
+        j: index of die in y direction
+    """
+    for t in test_keys:
+
+        if i == t[0] and j == t[1]:
+            
+            return True
+# ========================================================================
+
+
