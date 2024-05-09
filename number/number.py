@@ -53,10 +53,12 @@ def insert_number(cell,
     
 
     print(f"add number {number}")
-    
-    cell.insert(pya.DCellInstArray(numbers[number].cell_index(), 
-                                   pya.DTrans(pya.DTrans.R0, pya.DPoint(x, y))))
-    
+    try:
+        cell.insert(pya.DCellInstArray(numbers[number].cell_index(), 
+                                       pya.DTrans(pya.DTrans.R0, pya.DPoint(x, y))))
+    except:
+        print("Error: insert error, no such external cell")
+        pass
 # ========================================================================
     
 
