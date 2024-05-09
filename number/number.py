@@ -57,7 +57,7 @@ def insert_number(cell,
         cell.insert(pya.DCellInstArray(numbers[number].cell_index(), 
                                        pya.DTrans(pya.DTrans.R0, pya.DPoint(x, y))))
     except:
-        print("Error: insert error, no such external cell")
+        print(f"Error: insert error, no such external cell. Reticle ({reticle.x}, {reticle.y}) / Die ({die.x}, {die.y})")
         pass
 # ========================================================================
     
