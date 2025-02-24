@@ -1,4 +1,4 @@
-import pya
+import klayout.pya as pya
 
 # ========================================================================
 class Coordinate:
