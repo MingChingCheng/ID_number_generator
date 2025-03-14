@@ -34,3 +34,54 @@ The coordinate system is shown in the picture below:
      V
      y
 ```
+
+## Usage
+
+* Setting the geometric of dies and reticle
+
+```python
+# geometry define
+number_of_reticles  = 10
+number_of_dies      = 21
+
+# setting the dimension of die and reticle
+# unit: um
+die_size            = 100
+reticle_size        = die_size * number_of_dies
+```
+
+* Setting the coordinates of ids
+
+```python
+die_ID_x_tens       = Coordinate(10, -15)
+die_ID_x_ones       = Coordinate(15, -15)
+die_ID_y_tens       = Coordinate(70, -15)
+die_ID_y_ones       = Coordinate(75, -15)
+
+reticle_ID_x_tens   = Coordinate(10, -85)
+reticle_ID_x_ones   = Coordinate(15, -85)
+reticle_ID_y_tens   = Coordinate(70, -85)
+reticle_ID_y_ones   = Coordinate(75, -85)
+```
+
+* Define the coordinate of test key
+
+```python
+# define skip dies (test keys)
+test_keys = [(0, 0),
+             (20, 0),
+             (0, 20), 
+             (20, 20), 
+             (19, 20)]
+```
+
+* Prepare numbers.gds
+Prepare a file named "numbers.gds" with different number subcell.
+The original point of each number is at left-upper.
+
+## Result
+
+The "ID.gds" will be produced. Include the two layers.
+
+One layer is for ID number.
+Another layer is a dummy layer for alignment (typically layer: 0).
