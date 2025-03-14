@@ -47,7 +47,7 @@ reticle_size        = die_size * number_of_dies
 
 
 # setting the coordinate of each number
-# unit: number
+# unit: um
 die_ID_x_tens       = Coordinate(10, -15)
 die_ID_x_ones       = Coordinate(15, -15)
 die_ID_y_tens       = Coordinate(70, -15)
