@@ -27,15 +27,24 @@
 # |---------+
 # | (0, 2)  |             .
 # |---------+
-# |   .                         .
-# |   .                             .
-# |   .                                 .
+# |   .     |                    .
+# |   .     |                        .
+# |   .     |                            .
 # |---------+                                 +-----------
 # | (0, 20) |                                 | (20, 20) |
-# --------------------------------------------------------
+# -----------                                 ------------
 
+# The coordinate system is defined as below:
+#
+#   ^ y
+#   |
+#   |
+#   |
+#   |
+#   +------------> x
+# (0, 0)
 
-
+# The "left-top" corner of the numbers in "number.gds" must be aligned to the coordinate (0, 0)
 
 
 import klayout.pya as pya
