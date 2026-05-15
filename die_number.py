@@ -19,16 +19,32 @@
 #   die ID: the coordinate of a die in a reticle
 #   reticle ID: the coordinate of a reticle in whole wafer
 
-# The coordinate system is shown in the picture below:
+# The numbering system is shown in the picture below:
+# --------------------------------------------------------
+# | (0, 0)  | (1, 0) | (2, 0) |  ... | (19, 0) | (20, 0) |
+# |---------+--------+--------+------+---------+----------
+# | (0, 1)  |    .
+# |---------+
+# | (0, 2)  |             .
+# |---------+
+# |   .     |                    .
+# |   .     |                        .
+# |   .     |                            .
+# |---------+                                 +-----------
+# | (0, 20) |                                 | (20, 20) |
+# -----------                                 ------------
+
+# The coordinate system is defined as below:
+#
+#   ^ y
+#   |
+#   |
+#   |
+#   |
+#   +------------> x
 # (0, 0)
-#    |-----------> x
-#    |
-#    |
-#    |
-#    V
-#    y
 
-
+# The "left-top" corner of the numbers in "number.gds" must be aligned to the coordinate (0, 0)
 
 
 import klayout.pya as pya
@@ -75,7 +91,7 @@ layout = pya.Layout()
 # create a new cell
 top = layout.create_cell("ID")
 
-# create new layers
+# create new layers, just for marking the shape of reticle
 layer_mark = layout.layer(0, 0)
 
 # import number from file
