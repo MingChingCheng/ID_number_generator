@@ -8,7 +8,7 @@ This program generate the die ID and reticle ID on the wafer map.
 
 ## Install
 
-To use this code, you must install "klayout".
+To use this code, you must install "klayout" module.
 
 ```console
 pip install klayout
@@ -26,13 +26,31 @@ More information about how to use python code to make a mask, you can refer to f
 The coordinate system is shown in the picture below:
 
 ```plain
-  (0, 0)
-     |-----------> x
-     |
-     |
-     |
-     V
-     y
+   ^ y
+   |
+   |
+   |
+   |
+   +------------> x
+ (0, 0)
+```
+
+The numbering system is shown in the picture below:
+
+```plain
+ --------------------------------------------------------
+ | (0, 0)  | (1, 0) | (2, 0) |  ... | (19, 0) | (20, 0) |
+ |---------+--------+--------+------+---------+----------
+ | (0, 1)  |    .
+ |---------+
+ | (0, 2)  |             .
+ |---------+
+ |   .     |                    .
+ |   .     |                        .
+ |   .     |                            .
+ |---------+                                 +-----------
+ | (0, 20) |                                 | (20, 20) |
+ -----------                                 ------------
 ```
 
 ## Usage
