@@ -93,16 +93,19 @@ def is_test_key(test_keys: list[tuple[int, int]],
     """
     Judge if the die is a test key
 
-    Variable:
-        test_keys: a list of tuples
+    Args:
+        test_keys: a list of coordinates of test keys
         i: index of die in x direction
         j: index of die in y direction
+
     """
     for t in test_keys:
 
-        if i == t[0] and j == t[1]:
-            
+        if i == t[0] and j == t[1]:    
             return True
+        
+    # If the die is not in the test_keys list, return False
+    return False
 # ========================================================================
 
 
