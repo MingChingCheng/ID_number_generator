@@ -32,7 +32,8 @@ def two_digit_number_split(number: int) -> tuple[int, int]:
 
 # ========================================================================
 def insert_number(cell, 
-                  numbers: list, number: int, 
+                  number_cells: list, 
+                  number: int, 
                   reticle: Coordinate, 
                   die: Coordinate, 
                   ID: Coordinate) -> None:
@@ -40,13 +41,13 @@ def insert_number(cell,
     """
     Insert a number into a cell.
 
-    Variable:
-        cell:       a cell to be appended number
-        numbers:    a list of external cells of numbers
-        number:     the number to be insert
-        reticle:    the coordinate of upper-left corner of reticle
-        die:        the coordinate of upper-left corner of die
-        ID:         the coordinate of upper-left corner of ID
+    Arguments:
+        cell:         a cell to be appended number
+        number_cells: a list of external cells of numbers
+        number:       the number to be insert
+        reticle:      the coordinate of upper-left corner of reticle
+        die:          the coordinate of upper-left corner of die
+        ID:           the coordinate of upper-left corner of ID
     """
     x = reticle.x + die.x + ID.x
     y = reticle.y + die.y + ID.y
@@ -54,8 +55,9 @@ def insert_number(cell,
 
     print(f"add number {number}")
     try:
-        cell.insert(pya.DCellInstArray(numbers[number].cell_index(), 
-                                       pya.DTrans(pya.DTrans.R0, pya.DPoint(x, y))))
+        cell.insert(pya.DCellInstArray(number_cells[number].cell_index(), 
+                                       pya.DVector(x, y)))
+                    
     except:
         print(f"Error: insert error, no such external cell. Reticle ({reticle.x}, {reticle.y}) / Die ({die.x}, {die.y})")
         pass
@@ -68,20 +70,23 @@ def import_number(layout, file_name: str) -> list:
     """
     Import number 0~9 from another gds file.
 
-    Variable:
-        layout:     the layout under operating
-        file_name:  the gds file containing number 0~9
+    Arguments:
+        layout: the layout under operating
+        file_name: the gds file containing number 0~9
+    
+    Returns:
+        number_cells: a list of cells of number 0~9
     """
 
     layout.read( file_name )
     
-    numbers = []
+    number_cells = []
     for i in range(10):
 
         cell_name = 'NUMBER_' + str(i)
-        numbers.append( layout.cell(cell_name) )
+        number_cells.append( layout.cell(cell_name) )
 
-    return numbers
+    return number_cells
 # ========================================================================
 
 
@@ -93,16 +98,19 @@ def is_test_key(test_keys: list[tuple[int, int]],
     """
     Judge if the die is a test key
 
-    Variable:
-        test_keys: a list of tuples
+    Arguments:
+        test_keys: a list of coordinates of test keys
         i: index of die in x direction
         j: index of die in y direction
+
     """
     for t in test_keys:
 
-        if i == t[0] and j == t[1]:
-            
+        if i == t[0] and j == t[1]:    
             return True
+        
+    # If the die is not in the test_keys list, return False
+    return False
 # ========================================================================
 
 

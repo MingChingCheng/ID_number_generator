@@ -52,7 +52,7 @@ from number.number import *
 
 
 # geometry define
-number_of_reticles  = 10
+number_of_reticles  = 1
 number_of_dies      = 21
 
 
@@ -88,14 +88,14 @@ test_keys = [(0, 0),
 # create a new layout
 layout = pya.Layout()
 
-# create a new cell
-top = layout.create_cell("ID")
+# create a new top cell named "ID"
+top_cell = layout.create_cell("ID")
 
 # create new layers, just for marking the shape of reticle
 layer_mark = layout.layer(0, 0)
 
 # import number from file
-numbers = import_number(layout, 'numbers.gds')
+number_cells = import_number(layout, 'numbers.gds')
 
 
 
@@ -108,10 +108,10 @@ for i_reticle in range(number_of_reticles):
 
         # insert a DBox object by 4 points
         # DBox is a rectangle accept float number
-        top.shapes(layer_mark).insert(pya.DBox(reticle.x, 
-                                               reticle.y - reticle_size, 
-                                               reticle.x + reticle_size, 
-                                               reticle.y))
+        top_cell.shapes(layer_mark).insert(pya.DBox(reticle.x, 
+                                                    reticle.y - reticle_size, 
+                                                    reticle.x + reticle_size, 
+                                                    reticle.y))
 
         for i_die in range(number_of_dies):
             for j_die in range(number_of_dies):
@@ -128,25 +128,25 @@ for i_reticle in range(number_of_reticles):
                     # insert die ID
                     # x
                     x_tens, x_ones = two_digit_number_split(i_die)
-                    insert_number(top, numbers, x_tens, reticle, die, die_ID_x_tens)
-                    insert_number(top, numbers, x_ones, reticle, die, die_ID_x_ones)
+                    insert_number(top_cell, number_cells, x_tens, reticle, die, die_ID_x_tens)
+                    insert_number(top_cell, number_cells, x_ones, reticle, die, die_ID_x_ones)
                     
                     # y
                     y_tens, y_ones = two_digit_number_split(j_die)
-                    insert_number(top, numbers, y_tens, reticle, die, die_ID_y_tens)
-                    insert_number(top, numbers, y_ones, reticle, die, die_ID_y_ones)
+                    insert_number(top_cell, number_cells, y_tens, reticle, die, die_ID_y_tens)
+                    insert_number(top_cell, number_cells, y_ones, reticle, die, die_ID_y_ones)
 
 
                     # insert reticle ID
                     # x
                     x_tens, x_ones = two_digit_number_split(i_reticle)
-                    insert_number(top, numbers, x_tens, reticle, die, reticle_ID_x_tens)
-                    insert_number(top, numbers, x_ones, reticle, die, reticle_ID_x_ones)
+                    insert_number(top_cell, number_cells, x_tens, reticle, die, reticle_ID_x_tens)
+                    insert_number(top_cell, number_cells, x_ones, reticle, die, reticle_ID_x_ones)
                     
                     # y
                     y_tens, y_ones = two_digit_number_split(j_reticle)
-                    insert_number(top, numbers, y_tens, reticle, die, reticle_ID_y_tens)
-                    insert_number(top, numbers, y_ones, reticle, die, reticle_ID_y_ones)
+                    insert_number(top_cell, number_cells, y_tens, reticle, die, reticle_ID_y_tens)
+                    insert_number(top_cell, number_cells, y_ones, reticle, die, reticle_ID_y_ones)
 
                     
 
