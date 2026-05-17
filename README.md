@@ -1,10 +1,9 @@
 # ID number generator
 
-This program is build with klayout 0.29.6.
-This program generate the die ID and reticle ID on the wafer map.
-
-* die ID: the coordinate of a die in a reticle
-* reticle ID: the coordinate of a reticle in whole wafer
+* This program is build with klayout 0.29.6 (you may need to use same or higher version).
+* This program generate the die ID and reticle ID on the wafer map.
+  * die ID: the coordinate of a die in a reticle
+  * reticle ID: the coordinate of a reticle in whole wafer
 
 ## Install
 
@@ -55,6 +54,33 @@ The numbering system is shown in the picture below:
 
 ## Usage
 
+### Part 1: Prepare the number subcell
+
+* Using the tool ***"number_cell_generator.py"*** to generate the "numbers.gds" file.
+* Setting the layer and dimension of numbers
+
+```python
+# Setting GDS layer number and datatype
+GDS_LAYER = 10
+GDS_DATATYPE = 0
+
+# Setting the font all unit in "um"
+## size
+height = 10        # height of the number
+width = 5          # width of the number
+weight = 1         # boldness of the number (or linewidth)
+
+## round corner
+inner_corner = 0.5   # inner corner rounded radius
+outer_corner = 2   # outer corner rounded radius
+```
+
+* You can also prepare your own "numbers.gds" file.
+* The original point of each number is at left-upper.
+  ![number_coordinate](https://github.com/user-attachments/assets/cb80e1c1-13be-41a8-a2ef-f66ea0e250f0)
+
+### Part 2: Setting the geometric and coordinates
+
 * Setting the geometric of dies and reticle
 
 ```python
@@ -93,11 +119,8 @@ test_keys = [(0, 0),
              (19, 20)]
 ```
 
-* Prepare numbers.gds
-Prepare a file named "numbers.gds" with different number subcell.
-The original point of each number is at left-upper.
 
-![number_coordinate](https://github.com/user-attachments/assets/cb80e1c1-13be-41a8-a2ef-f66ea0e250f0)
+
 
 ## Result
 
